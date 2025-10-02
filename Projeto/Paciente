@@ -1,3 +1,6 @@
 public class Paciente{
-    
+
+    public void main (String[] args){
+        System.out.println("testando atualização");
+    }
 }
