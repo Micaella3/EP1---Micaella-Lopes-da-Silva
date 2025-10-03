@@ -51,17 +51,6 @@ public class Paciente {
     }
 
     //metodo descontoIdade
-
-    //tostring
-    public String tostring(){
-        return "\n *** Paciente ***" +
-                "\n Nome: " + getNome() +
-                "\n CPF: " + getCpf() +
-                "\n Idade: " + getIdade()+
-                "\n Histórico de Consultas: " + getHistoricoConsultas()+
-                "\n Histórico de Internações: " + getHistoricoInternacoes();
-
-    }
     
 
 }
