@@ -50,6 +50,8 @@ public class Paciente {
         this.historicoInternacoes = new ArrayList<>(historicoInternacoes);
     }
 
+    //metodo descontoIdade
+
     //tostring
     public String tostring(){
         return "\n *** Paciente ***" +
