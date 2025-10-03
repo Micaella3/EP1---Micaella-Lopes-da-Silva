@@ -17,7 +17,8 @@ public class Medico {
         this.custoConsulta = custoConsulta;
         this.agendaHorarios = agendaHorarios;
     }
-    
+
+    //getters e setters
     public String getNome() {
         return nome;
     }
@@ -57,5 +58,18 @@ public class Medico {
     public void setAgendaHorarios(List<String> agendaHorarios) {
         this.agendaHorarios = agendaHorarios;
     }
+
+    //toString
+
+    @Override
+    public String toString() {
+        return "\n *** Médico ***" +
+                "\n Nome: " +getNome() +
+                "\n Especialidade: " + getEspecialidade() +
+                "\n CRM: " + getCrm() +
+                "\n Custo da Consulta: " + getCustoConsulta() +
+                "\n Agenda de Horários: " + getAgendaHorarios();
+    }
+
 }
 
