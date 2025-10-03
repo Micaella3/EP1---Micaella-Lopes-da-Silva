@@ -8,6 +8,7 @@ public class Paciente {
     private int idade;
     private List<String> historicoConsultas;
     private List<String> historicoInternacoes;
+    private String aaaa;
 
     //construtor 
     public Paciente(String nome, String cpf, int idade, List<String> historicoConsultas, List<String> historicoInternacoes){
