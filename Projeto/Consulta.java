@@ -86,6 +86,60 @@ public void setDiagnostico(String diagnostico){
     this.diagnostico = diagnostico;
 }
 
+
+//met. de registrar diagnostico
+public void registrarDiagnostico(String diagnostico, String prescricao, String registro){
+    this.setDiagnostico(diagnostico);
+    this.setPrescricao(prescricao);
+    this.setRegistro(registro);
+}
+
+//met. finalizar consulta
+public void finalizarConsulta(){
+    if(this.diagnostico == null){
+        System.out.println("Erro: É preciso do diagnóstico.");
+    return;
+    }
+
+    //status alterado
+    this.setStatus("Consulta Concluída.");
+
+    //p registrar essa consulta no hist. do paciente
+    if (this.paciente != null){
+        this.paciente.adicionarConsulta(this);
+    
+        System.out.println("Consulta finslizada.");
+    }
+}
+    //calcular o custo final
+public double calcularCustoFinal(){
+  
+    double custoInicial = this.medico.getCustoConsulta();
+    
+    //desconto por idade
+    double descontoIdade = this.paciente.calcularDescontoConsulta(); 
+    
+    //por especialidade
+    double descontoPlanoAplicavel = 0.0;
+    
+    //verifica se o paciente é especial ou n
+    if (this.paciente instanceof PacienteEspecial) {
+        PacienteEspecial pe = (PacienteEspecial) this.paciente;
+        
+        //pega a especialidade
+        String especialidade = this.medico.getEspecialidade(); 
+        
+        //chama o met. q retorna o desconto
+        descontoPlanoAplicavel = pe.getDescontoPlanoAplicavel(especialidade);
+    }
+    
+    //math max pega os dois descontos p ver qual o maior
+    double descontoTotal = Math.max(descontoIdade, descontoPlanoAplicavel);
+    
+    //desconto total
+    return custoInicial * (1.0 - descontoTotal);
+}
+
 //toString 
 public String toString(){
     return "\n --- Informações da Consulta ---" +

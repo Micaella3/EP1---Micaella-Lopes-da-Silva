@@ -1,13 +1,12 @@
 
-import java.util.List;
 
 public class PacienteComum extends Paciente {
 
     private String metodoPagamento;
     
     //construtor 
-    public PacienteComum(String metodoPagamento, String nome, String cpf, int idade, List<String> historicoConsultas, List<String> historicoInternacoes) {
-        super(nome, cpf, idade, historicoConsultas, historicoInternacoes);
+    public PacienteComum(String metodoPagamento, String nome, String cpf, int idade) {
+        super(nome, cpf, idade);
         this.metodoPagamento = metodoPagamento;
     }
 
@@ -20,6 +19,14 @@ public class PacienteComum extends Paciente {
         this.metodoPagamento = metodoPagamento;
     }
     
+    //método d calcular o custo da consulta
+public double calcularCustoConsulta(double custoInicial){
+
+    //pega da super
+    double desconto = super.calcularDescontoConsulta();
+    return custoInicial*(1.0 - desconto);
+}
+
     //string
     @Override
     public String toString(){

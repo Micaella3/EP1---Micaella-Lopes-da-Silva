@@ -1,15 +1,18 @@
+
+import java.time.LocalDate;
+
 public class Internacoes{
 
     private boolean internado;
     private String dataEntrada;
     private String dataSaida;
-    private int custo;
+    private double custo;
     private Quarto quarto;
     private Paciente paciente;
     private Medico medico;
     
     //construtor
-    public Internacoes(Medico medico, Paciente paciente, Quarto quarto, boolean internado, String dataEntrada, String dataSaida, int custo){
+    public Internacoes(Medico medico, Paciente paciente, Quarto quarto, boolean internado, String dataEntrada, String dataSaida, double  custo){
         this.medico = medico;
         this.paciente = paciente;
         this.quarto = quarto;
@@ -44,11 +47,11 @@ public class Internacoes{
         this.dataSaida = dataSaida;
     }
 
-    public int getCusto() {
+    public double  getCusto() {
         return custo;
     }
 
-    public void setCusto(int custo) {
+    public void setCusto(double custo) {
         this.custo = custo;
     }
 
@@ -76,7 +79,40 @@ public class Internacoes{
         this.medico = medico;
     }
 
-    //metodo cancelar internacao
+    //met. de cancelar internação
+public boolean cancelaInternacao(){
+    if(!this.internado){
+        return false;
+    }
+
+    //grava data e status
+    this.setDataSaida(LocalDate.now().toString());
+    this.setInternado(false);
+
+    //p liberar o quarto
+    this.liberarQuarto();
+
+    return true;
+}
+
+    //met. p calcular o custo da internacao
+public double calcularCusto(int diasInternacao){
+    double custoInicial = this.custo * diasInternacao;
+
+    if (this.paciente instanceof PacienteEspecial){
+        PacienteEspecial pe = (PacienteEspecial) this.paciente;
+
+        return pe.calcularDescontoInternacao(custoInicial, diasInternacao);
+    }
+    return custoInicial;
+}
+
+    //met. p liberar o quarto
+public void liberarQuarto(){
+    if (this.quarto != null){
+        this.quarto.setOcupado(false);
+    }
+}
 
     //toString
     @Override

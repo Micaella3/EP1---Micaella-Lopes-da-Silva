@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Medico {
@@ -6,17 +7,19 @@ public class Medico {
     private String nome;
     private String especialidade;
     private String crm;
-    private int custoConsulta;
+    private double custoConsulta;
     private List<String> agendaHorarios;
+    private List<Consulta> historicoConsultas;
 
     //construtor 
-    public Medico(String nome, String especialidade, String crm, int custoConsulta, List<String> agendaHorarios){
+    public Medico(String nome, String especialidade, String crm, double custoConsulta, List<String> agendaHorarios){
         this.nome = nome;
         this.especialidade = especialidade;
         this.crm = crm;
         this.custoConsulta = custoConsulta;
         this.agendaHorarios = agendaHorarios;
-    }
+        this.historicoConsultas = new ArrayList<>();
+}
 
     //getters e setters
     public String getNome() {
@@ -43,11 +46,11 @@ public class Medico {
         this.crm = crm;
     }
 
-    public int getCustoConsulta() {
+    public double  getCustoConsulta() {
         return custoConsulta;
     }
 
-    public void setCustoConsulta(int custoConsulta) {
+    public void setCustoConsulta(double custoConsulta) {
         this.custoConsulta = custoConsulta;
     }
 
@@ -59,8 +62,22 @@ public class Medico {
         this.agendaHorarios = agendaHorarios;
     }
 
-    //toString
+    //método p saber a disponibilidade 
+public boolean disponibilidade(){
+    return !this.agendaHorarios.isEmpty();
+}
 
+    //método p saber a quant. de consultas realizadas
+public int consultasRealizadas(){
+    return this.historicoConsultas.size();
+}
+
+    //método p hist. de consultas
+public void adicionarConsultaRealizada(Consulta c){
+    this.historicoConsultas.add(c);
+}
+
+    //toString
     @Override
     public String toString() {
         return "\n *** Médico ***" +

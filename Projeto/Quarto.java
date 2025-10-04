@@ -6,7 +6,7 @@ public class Quarto {
     //construtor
     public Quarto(int numero, boolean ocupado){
         this.numero = numero;
-        this.ocupado = ocupado;
+        this.ocupado = false;
     }
 
     //getters e setters
@@ -25,6 +25,20 @@ public class Quarto {
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
     }
+
+    //métodos
+public boolean ocupar(){
+    if (this.ocupado){
+        return false;
+    }
+    this.ocupado = true;
+    return true;
+}
+
+public void liberar(){
+    this.ocupado = false;
+}
+
 
     //toString
     @Override
