@@ -4,15 +4,15 @@ import java.time.LocalDate;
 public class Internacoes{
 
     private boolean internado;
-    private String dataEntrada;
-    private String dataSaida;
+    private LocalDate dataEntrada;
+    private LocalDate dataSaida;
     private double custo;
     private Quarto quarto;
     private Paciente paciente;
     private Medico medico;
     
     //construtor
-    public Internacoes(Medico medico, Paciente paciente, Quarto quarto, boolean internado, String dataEntrada, String dataSaida, double  custo){
+    public Internacoes(Medico medico, Paciente paciente, Quarto quarto, boolean internado, LocalDate dataEntrada, LocalDate dataSaida, double  custo){
         this.medico = medico;
         this.paciente = paciente;
         this.quarto = quarto;
@@ -31,19 +31,19 @@ public class Internacoes{
         this.internado = internado;
     }
 
-    public String getDataEntrada() {
+    public LocalDate getDataEntrada() {
         return dataEntrada;
     }
 
-    public void setDataEntrada(String dataEntrada) {
+    public void setDataEntrada(LocalDate dataEntrada) {
         this.dataEntrada = dataEntrada;
     }
 
-    public String getDataSaida() {
+    public LocalDate getDataSaida() {
         return dataSaida;
     }
 
-    public void setDataSaida(String dataSaida) {
+    public void setDataSaida(LocalDate dataSaida) {
         this.dataSaida = dataSaida;
     }
 
@@ -86,7 +86,7 @@ public boolean cancelaInternacao(){
     }
 
     //grava data e status
-    this.setDataSaida(LocalDate.now().toString());
+    this.setDataSaida(LocalDate.now());
     this.setInternado(false);
 
     //p liberar o quarto
@@ -123,7 +123,7 @@ public void liberarQuarto(){
                 "\n Data de Saída: " + getDataSaida() +
                 "\n Quarto: " + getQuarto() +
                 "\n Paciente internado: " + getPaciente() +
-                "\n Médico responsável: " + getPaciente();
+                "\n Médico responsável: " + getMedico();
     }
 
 }

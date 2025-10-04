@@ -34,7 +34,7 @@ public double calcularDescontoEspecialidade(String especialidade) {
         return 0.10;
     } else if (especialidade.equalsIgnoreCase("Ortopedia")) {
         return 0.40; 
-    } else if (especialidade.equalsIgnoreCase("Demartologia")) {
+    } else if (especialidade.equalsIgnoreCase("Dermatologia")) {
         return 0.15; 
     }else if (especialidade.equalsIgnoreCase("Neurologia")) {
         return 0.05; 
@@ -42,9 +42,9 @@ public double calcularDescontoEspecialidade(String especialidade) {
         return 0.50; 
     }else if (especialidade.equalsIgnoreCase("Oftalmologia")) {
         return 0.16; 
-    }else if (especialidade.equalsIgnoreCase("Infectologa")) {
+    }else if (especialidade.equalsIgnoreCase("Infectologia")) {
         return 0.25; 
-    }else if (especialidade.equalsIgnoreCase("Demartologia")) {
+    }else if (especialidade.equalsIgnoreCase("Otorrinolaringologia")) {
         return 0.30; 
     }else if (especialidade.equalsIgnoreCase("Geriatria")) {
         return 0.10; 
