@@ -111,7 +111,7 @@ public void finalizarConsulta(){
         System.out.println("Consulta finslizada.");
     }
 }
-    //calcular o custo final
+    //met. calcular o custo final
 public double calcularCustoFinal(){
   
     double custoInicial = this.medico.getCustoConsulta();

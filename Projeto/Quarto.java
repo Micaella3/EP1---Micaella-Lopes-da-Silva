@@ -6,7 +6,7 @@ public class Quarto {
     //construtor
     public Quarto(int numero, boolean ocupado){
         this.numero = numero;
-        this.ocupado = false;
+        this.ocupado = ocupado;
     }
 
     //getters e setters
