@@ -1,8 +1,15 @@
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Consulta {
+
+    private static final DateTimeFormatter FORMATTER =
+    DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     
     private Medico medico;
     private Paciente paciente;
-    private String dataHora;
+    private LocalDateTime dataHora;
     private String local;
     private String status;
     private String prescricao; 
@@ -10,7 +17,7 @@ public class Consulta {
     private String diagnostico;
 
     //cosntrutor 
-public Consulta(Medico medico,Paciente paciente, String dataHora, String local, String status, String prescricao, String registro, String diagnostico){
+public Consulta(Medico medico,Paciente paciente, LocalDateTime dataHora, String local, String status, String prescricao, String registro, String diagnostico){
     this.medico = medico;
     this.paciente = paciente;
     this.dataHora = dataHora;
@@ -38,11 +45,11 @@ public void setPaciente(Paciente paciente){
     this.paciente = paciente;
 }
 
-public String getDataHora(){
+public LocalDateTime getDataHora(){
     return dataHora;
 }
 
-public void setDataHora(String dataHora){
+public void setDataHora(LocalDateTime dataHora){
     this.dataHora = dataHora;
 }
 
@@ -86,6 +93,19 @@ public void setDiagnostico(String diagnostico){
     this.diagnostico = diagnostico;
 }
 
+//met. SCV
+    public String toCSV(){
+        String dataHoraFormatada = this.dataHora.format(FORMATTER);
+
+        return this.medico.getCrm() + ";" +
+               this.paciente.getCpf() + ";" +
+               dataHoraFormatada + ";" +
+               getLocal() + ";" +
+               getStatus() + ";" +
+               getPrescricao() + ";" +
+               getRegistro() + ";" +
+               getDiagnostico();
+    }
 
 //met. de registrar diagnostico
 public void registrarDiagnostico(String diagnostico, String prescricao, String registro){

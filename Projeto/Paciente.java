@@ -50,6 +50,14 @@ public class Paciente {
         this.historicoInternacoes = new ArrayList<>(historicoInternacoes);
     }
 
+    //método toCSV
+public String toCSV(){
+    //esse vai ser sobreescrito pq essa é classe pai
+    return getNome() + ";" +
+           getCpf() + ";" +
+           getIdade();
+}
+
     //método de adicionar consulta no histórico
 public void adicionarConsulta(Consulta c){
     this.historicoConsultas.add(c);

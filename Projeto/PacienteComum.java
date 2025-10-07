@@ -18,6 +18,14 @@ public class PacienteComum extends Paciente {
     public void setMetodoPagamento(String metodoPagamento) {
         this.metodoPagamento = metodoPagamento;
     }
+
+    //método csv
+@Override
+public String toCSV(){
+    return "PacienteComum;" +
+            super.toCSV() + ";" +
+            getMetodoPagamento();
+}
     
     //método d calcular o custo da consulta
 public double calcularCustoConsulta(double custoInicial){

@@ -1,7 +1,11 @@
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Internacoes{
+
+    private static final DateTimeFormatter FORMATTER =
+    DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private boolean internado;
     private LocalDate dataEntrada;
@@ -78,6 +82,21 @@ public class Internacoes{
     public void setMedico(Medico medico) {
         this.medico = medico;
     }
+
+    //método do toCSV
+public String toCSV(){
+    String dataEntradaFormatada = this.dataEntrada.format(FORMATTER);
+    String dataSaidaFormatada = (this.dataSaida != null) ?
+    this.dataSaida.format(FORMATTER) : "NULO";
+
+    return this.medico.getCrm() + ";" +
+           this.paciente.getCpf()  + ";" +
+           this.quarto.getNumero()  + ";" +
+           isInternado()  + ";" +
+           dataEntradaFormatada  + ";" +
+           dataSaidaFormatada  + ";" +
+           String.format("%.2f", getCusto());
+}
 
     //met. de cancelar internação
 public boolean cancelaInternacao(){

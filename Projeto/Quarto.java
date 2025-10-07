@@ -26,6 +26,11 @@ public class Quarto {
         this.ocupado = ocupado;
     }
 
+    //método toCvs 
+public String toCSV(){
+    return getNumero() + ";" +
+           isOcupado() + ";";
+}
     //métodos
 public boolean ocupar(){
     if (this.ocupado){

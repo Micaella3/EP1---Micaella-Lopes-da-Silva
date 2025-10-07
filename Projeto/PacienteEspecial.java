@@ -27,6 +27,18 @@ public class PacienteEspecial extends Paciente {
         this.grauPrioridade = grauPrioridade;
     }
 
+    //método toCSv
+public String toCSV(){
+
+    String planoDescricao = (this.planoSaude != null) ? this.planoSaude.getDescricao(): "NULO";
+    //essa linha serve p economizar espaço quando o negócio carregar e so mostrar o q interessa
+
+    return  "PacienteEspecial;" +
+            super.toCSV() + ";" +
+            planoDescricao + ";" +
+            getGrauPrioridade();
+}
+
     //met. q tem o custo total base e a duração em dias
     public double calcularDescontoInternacao(double custoBase, int diasInternacao) { 
         

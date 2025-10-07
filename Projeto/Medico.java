@@ -62,6 +62,18 @@ public class Medico {
         this.agendaHorarios = agendaHorarios;
     }
 
+    //método de toCvs q converte as informações em uma linha única de texto p ser mais fácil d salvar
+public String toCSV(){
+    //esse método d join é uma coleção de strings
+    String agendaFormatada = String.join(",", this.agendaHorarios);
+
+    return getNome() + ";" +
+           getEspecialidade() + ";" +
+           getCrm() + ";" +
+           String.format("%.2f", getCustoConsulta()) + ";" +
+           agendaFormatada;
+}
+
     //método p saber a disponibilidade 
 public boolean disponibilidade(){
     return !this.agendaHorarios.isEmpty();

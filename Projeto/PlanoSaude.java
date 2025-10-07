@@ -26,6 +26,12 @@ public class PlanoSaude {
         this.descricao = descricao;
     }
 
+    //método toCsv
+public String toCSV(){
+    return getDescricao() +";"+
+           String.format("%.2f", getDescontoGeral());
+}
+
     //met. desconto por especialidade 
 public double calcularDescontoEspecialidade(String especialidade) {
     if (especialidade.equalsIgnoreCase("Cardiologia")) {
