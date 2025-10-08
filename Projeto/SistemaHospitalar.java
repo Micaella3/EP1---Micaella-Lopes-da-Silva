@@ -3,6 +3,7 @@ import java.util.List;
 
 public class SistemaHospitalar {
     
+    //listando
     private List<Medico> medicos;
     private List<Paciente> pacientes;
     private List<Consulta> consultas;
@@ -41,7 +42,7 @@ public SistemaHospitalar() {
 
     //**met p/ permitir q a main encontre o plano antes d cadastrar pEspecial
     public PlanoSaude buscarPlanoSaudePorDescricao(String descricao) {
-    return this.planos.stream()
+    return this.planos.stream() 
                .filter(p -> p.getDescricao().equalsIgnoreCase(descricao))
                .findFirst()
                .orElse(null);

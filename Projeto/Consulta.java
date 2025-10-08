@@ -3,9 +3,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Consulta {
 
+    //formatando data e hora
     private static final DateTimeFormatter FORMATTER =
     DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     
+    //atributos
     private Medico medico;
     private Paciente paciente;
     private LocalDateTime dataHora;
@@ -135,9 +137,8 @@ public void finalizarConsulta(){
         System.out.println("Consulta finalizada.");
     }
 }
-    //met. calcular o custo final
+    //met. calcular o custo final usando o custo d consulta
 public double calcularCustoFinal(){
-  
     double custoInicial = this.medico.getCustoConsulta();
     
     //desconto por idade

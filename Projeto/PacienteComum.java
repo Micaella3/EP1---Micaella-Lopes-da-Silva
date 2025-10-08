@@ -2,6 +2,7 @@
 
 public class PacienteComum extends Paciente {
 
+    //atributo
     private String metodoPagamento;
     
     //construtor 

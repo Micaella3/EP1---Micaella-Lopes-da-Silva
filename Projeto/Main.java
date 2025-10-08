@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 
 public class Main {
     
+    //p entrada d dados
     private static final Scanner scanner = new Scanner(System.in);
 
+    //formatar data
     private static final DateTimeFormatter FORMATTER_DATAHORA = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private static final DateTimeFormatter FORMATTER_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -42,7 +44,7 @@ public class Main {
         
         exibirMenuPrincipal(sistema, relatorio); 
     }
-//começando o menu 
+//fazendo o menu, a partir dele os metodos sao basicamente so msotrando opções com SOUT, pedindo dados e puxando métodos ja feitos na classe de gerenciamento
     private static void exibirMenuPrincipal(SistemaHospitalar sistema, Relatorio relatorio) {
         int opcao = -1;
         while (opcao != 0) {

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 public class Relatorio{
 
+    //listas
     private List<Medico> medicos;
     private List<Paciente> pacientes;
     private List<Consulta> consultas;

@@ -1,5 +1,6 @@
 public class PlanoSaude {
     
+    //atributos
     private double descontoGeral;
     private String descricao; 
     private boolean especialParaInternacao;

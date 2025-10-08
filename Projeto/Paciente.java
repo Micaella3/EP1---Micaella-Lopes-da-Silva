@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Paciente {
 
+    //atributos
     private String nome;
     private String cpf;
     private int idade;

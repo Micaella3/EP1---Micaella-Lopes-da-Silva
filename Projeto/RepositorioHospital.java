@@ -89,23 +89,25 @@ public class RepositorioHospital {
         if (!file.exists()) return;
 
         try (BufferedReader br = new BufferedReader(new FileReader(file))){
-            String linha;
-            //variável p armazenar as linhas 
+            String linha; //variável p armazenar as linhas 
             while ((linha = br.readLine()) != null){
                 String[] dados = linha.split(DELIMITER);
                 if (dados.length < 5) continue;
 
+                //ordem dos dados
                 String nome = dados[0];
                 String especialidade = dados[1];
                 String crm = dados[2];
 
                 double custoConsulta = Double.parseDouble(dados[3].replace(",", "."));
 
+                //listagem com numero d dados que deve ter
                 List<String> agenda = new ArrayList<>();
                 if (dados.length > 4 && !dados[4].isEmpty()){
                     agenda = Arrays.asList(dados[4].split(","));
                 }
 
+                //criando objeto
                 Medico novoMedico = new Medico(nome, especialidade, crm, custoConsulta, agenda);
                 sistema.getMedicos().add(novoMedico);
             }
@@ -115,7 +117,7 @@ public class RepositorioHospital {
     }
 
 private void carregarPlanos() {
-    File file = new File(DATA_PATH + "planos.csv");
+    File file = new File(DATA_PATH + "planos.csv");  //fazendo a "trilha" ate a pasta de dados
     if (!file.exists()) return; 
 
     try (BufferedReader br = new BufferedReader(new FileReader(file))) {
@@ -123,7 +125,7 @@ private void carregarPlanos() {
         while ((linha = br.readLine()) != null) {
             String[] dados = linha.split(DELIMITER);
             
-        if (dados.length < 3) continue; 
+        if (dados.length < 3) continue; //continuar ate chegar na quantidade certa d dados e sendo assim pra todos os carregamentos a partir daqui
             
             String descricao = dados[0]; 
             double descontoGeral = Double.parseDouble(dados[1].replace(",", ".")); 

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Medico {
    
+    //atributos
     private String nome;
     private String especialidade;
     private String crm;

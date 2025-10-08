@@ -1,5 +1,6 @@
 public class Quarto {
     
+    //atributos
     private int numero;
     private boolean  ocupado;
 
@@ -43,7 +44,6 @@ public boolean ocupar(){
 public void liberar(){
     this.ocupado = false;
 }
-
 
     //toString
     @Override

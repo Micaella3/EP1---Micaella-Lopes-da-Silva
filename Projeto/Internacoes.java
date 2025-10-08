@@ -4,9 +4,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Internacoes{
 
+    //formatando data
     private static final DateTimeFormatter FORMATTER =
     DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    //atributos
     private boolean internado;
     private LocalDate dataEntrada;
     private LocalDate dataSaida;
@@ -110,7 +112,6 @@ public boolean cancelaInternacao(){
 
     //p liberar o quarto
     this.liberarQuarto();
-
     return true;
 }
 
@@ -120,7 +121,6 @@ public double calcularCusto(int diasInternacao){
 
     if (this.paciente instanceof PacienteEspecial){
         PacienteEspecial pe = (PacienteEspecial) this.paciente;
-
         return pe.calcularDescontoInternacao(custoInicial, diasInternacao);
     }
     return custoInicial;
