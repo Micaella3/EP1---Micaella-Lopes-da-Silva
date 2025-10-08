@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
-import java.time.LocalDate;
-import java.util.Scanner;
 
 public class SistemaHospitalar {
     
@@ -11,6 +8,7 @@ public class SistemaHospitalar {
     private List<Consulta> consultas;
     private List<Internacoes> internacoes;
     private List<Quarto> quartos;
+    private List<PlanoSaude> planos;
 
     //construtor
 public SistemaHospitalar() {
@@ -19,6 +17,7 @@ public SistemaHospitalar() {
     this.consultas = new ArrayList<>();
     this.internacoes = new ArrayList<>();
     this.quartos = new ArrayList<>();
+    this.planos = new ArrayList<>();
 }
 
     //cadastros
@@ -36,6 +35,10 @@ public SistemaHospitalar() {
         this.quartos.add(q);
     }
 
+    public void cadastrarPlanoSaude(PlanoSaude ps){
+        this.planos.add(ps);
+    }
+
     //met. de agendamento d consulta
 public boolean agendarConsulta(Consulta novaConsulta){
     Medico medicoDesejado = novaConsulta.getMedico();
@@ -43,7 +46,7 @@ public boolean agendarConsulta(Consulta novaConsulta){
     //validação de conflito d horario e local
     for (Consulta c: consultas) {
         if (c.getMedico().equals(medicoDesejado) && c.getDataHora().equals(novaConsulta.getDataHora())){
-            System.err.println("Erro: Médico indisponível.");
+            System.err.println("Erro: Médico indisponível no horário.");
             return false;
         }
         if (c.getLocal().equals(novaConsulta.getLocal()) && c.getDataHora().equals(novaConsulta.getDataHora())) {
@@ -95,7 +98,7 @@ public void liberarInternacao(Internacoes i) {
     if (i.cancelaInternacao()){
         System.out.println("Paciente liberado da internação.");
     } else{
-        System.err.println("Erro: Internação já foi finalizada.");
+        System.err.println("Erro: Internação já foi finalizada ou não estava ativa.");
     }
 }
 
@@ -117,5 +120,31 @@ public void liberarInternacao(Internacoes i) {
     }
      public List<Quarto> getQuartos() {
         return quartos;
+    }
+
+    public List<PlanoSaude> getPlanos(){
+        return planos;
+    }
+
+    //os met. de busca que sao puxados no repositório
+    public Medico buscarMedicoPorCrm(String crm){
+        return this.medicos.stream()
+                            .filter(m -> m.getCrm().equals(crm))
+                            .findFirst()
+                            .orElse(null);
+    }
+
+    public Paciente buscarPacientePorCpf(String cpf) {
+    return this.pacientes.stream()
+               .filter(p -> p.getCpf().equals(cpf))
+               .findFirst()
+               .orElse(null);
+    }
+
+    public Quarto buscarQuartoPorNumero(int numero) {
+    return this.quartos.stream()
+               .filter(q -> q.getNumero() == numero)
+               .findFirst()
+               .orElse(null);
     }
 }

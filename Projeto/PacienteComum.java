@@ -22,7 +22,7 @@ public class PacienteComum extends Paciente {
     //método csv
 @Override
 public String toCSV(){
-    return "PacienteComum;" +
+    return "COMUM;" +
             super.toCSV() + ";" +
             getMetodoPagamento();
 }

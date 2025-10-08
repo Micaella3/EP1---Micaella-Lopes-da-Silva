@@ -1,5 +1,8 @@
-import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -30,18 +33,32 @@ public class Relatorio{
     }
 
     public void listarInternados(){
-        //.stream é sequência de elementos que suporta várias operações de processamento
+        System.out.println("\n Pacientes Atualmente Internados:");
+        
+         //.stream é sequência de elementos que suporta várias operações de processamento
         this.internacoes.stream()
         .filter(Internacoes::isInternado)
-        .forEach(i -> System.out.println("Paciente Internado: " + i.getPaciente().getNome() + " Quarto: " + i.getQuarto().getNumero()));
+        .forEach(i -> {
+            //calculo d tempo q diferencia a data d entrada e hoje
+            long dias = ChronoUnit.DAYS.between(i.getDataEntrada(), LocalDate.now());
+            
+            System.out.printf("Paciente: %s | Quarto: %d | Dias Internado: %d\n", 
+                                i.getPaciente().getNome(), i.getQuarto().getNumero(), dias);
+        });
     }
 
     public void listarConsultasFuturas() { 
         System.out.println("\n Consultas Futuras: ");
+                         consultas.stream()
+                        .filter(c -> c.getDataHora() != null && c.getDataHora().isAfter(LocalDateTime.now()))
+                        .forEach(System.out::println);
     }
     
     public void listarConsultasPassadas() {
         System.out.println("\n Consultas Passadas: ");
+                             consultas.stream()
+                             .filter(c -> c.getDataHora() != null && c.getDataHora().isBefore(LocalDateTime.now()))
+                             .forEach(System.out::println);
     }
     
     //met. de estatistica
@@ -61,6 +78,44 @@ public class Relatorio{
             .max(Map.Entry.comparingByValue())
             .ifPresent(e -> System.out.println("Especialidade Mais Procurada: " + e.getKey()));
             
+            this.calcularEconomiaPlano();
+    }
+
+    public void calcularEconomiaPlano(){
+        //mapiando paciente especial
+        Map<String, Double> economiaPorPlano = this.pacientes.stream()
+            .filter(p -> p instanceof PacienteEspecial)
+            .map(p -> (PacienteEspecial) p)
+            .collect(Collectors.groupingBy(p -> p.getPlanoSaude() != null ? p.getPlanoSaude().getDescricao() : "SEM PLANO" ,
+            
+        //somando economia das consultas e internções
+        Collectors.summingDouble(pe -> {
+                    double economiaConsulta = 0.0;
+                    double economiaInternacao = 0.0; 
+                
+                //custo base - custo calculado = economia
+                economiaConsulta = pe.getHistoricoConsultas().stream()
+                                         .mapToDouble(c -> c.getMedico().getCustoConsulta() - c.calcularCustoFinal())
+                                         .sum();
+
+                return economiaConsulta + economiaInternacao;
+                })
+            ));
+    
+        System.out.println("\n--- Economia por Plano de Saúde ---");
+             economiaPorPlano.forEach((plano, economia) -> {
+            // Filtra o "SEM PLANO"
+            if (!plano.equals("SEM PLANO")) {
+
+                 long qtdPessoas = this.pacientes.stream()
+                                       .filter(p -> p instanceof PacienteEspecial && 
+                                            ((PacienteEspecial) p).getPlanoSaude() != null &&
+                                            ((PacienteEspecial) p).getPlanoSaude().getDescricao().equals(plano))
+                                        .count();
+                                        
+                 System.out.printf("Plano: %s | Usuários: %d | Total Economizado: R$ %.2f\n",plano, qtdPessoas, economia);
+            }
+        });
     }
 
 }

@@ -43,7 +43,7 @@ public class Paciente {
     public void setIdade(int idade){
         this.idade = idade;
     }
-    public void setHistoricoConsulta(List<Consulta> historicoConsultas){
+    public void setHistoricoConsultas(List<Consulta> historicoConsultas){
         this.historicoConsultas = new ArrayList<>(historicoConsultas);
     }
      public void setHistoricoInternacoes(List<Internacoes> historicoInternacoes){
@@ -71,7 +71,7 @@ public void adicionarInternacao(Internacoes i){
     //mét. que calcula o desconto da consulta
 public double calcularDescontoConsulta(){
     if (idade>= 60){
-        return 0.30;
+        return 0.10;
     }
     return 0.0;
 }

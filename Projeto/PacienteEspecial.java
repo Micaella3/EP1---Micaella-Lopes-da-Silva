@@ -33,7 +33,7 @@ public String toCSV(){
     String planoDescricao = (this.planoSaude != null) ? this.planoSaude.getDescricao(): "NULO";
     //essa linha serve p economizar espaço quando o negócio carregar e so mostrar o q interessa
 
-    return  "PacienteEspecial;" +
+    return  "ESPECIAL;" +
             super.toCSV() + ";" +
             planoDescricao + ";" +
             getGrauPrioridade();

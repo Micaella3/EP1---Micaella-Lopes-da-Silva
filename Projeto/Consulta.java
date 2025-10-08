@@ -127,8 +127,9 @@ public void finalizarConsulta(){
     //p registrar essa consulta no hist. do paciente
     if (this.paciente != null){
         this.paciente.adicionarConsulta(this);
+        this.medico.adicionarConsultaRealizada(this);
     
-        System.out.println("Consulta finslizada.");
+        System.out.println("Consulta finalizada.");
     }
 }
     //met. calcular o custo final
