@@ -1,4 +1,3 @@
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,6 +14,10 @@ public class Consulta {
     private String prescricao; 
     private String registro;
     private String diagnostico;
+
+    public static final String STATUS_AGENDADA = "Agendada";
+    public static final String STATUS_CONCLUIDA = "Concluída";
+    public static final String STATUS_CANCELADA = "Cancelada";
 
     //cosntrutor 
 public Consulta(Medico medico,Paciente paciente, LocalDateTime dataHora, String local, String status, String prescricao, String registro, String diagnostico){
@@ -154,11 +157,11 @@ public double calcularCustoFinal(){
         descontoPlanoAplicavel = pe.getDescontoPlanoAplicavel(especialidade);
     }
     
-    //math max pega os dois descontos p ver qual o maior
-    double descontoTotal = Math.max(descontoIdade, descontoPlanoAplicavel);
-    
-    //desconto total
-    return custoInicial * (1.0 - descontoTotal);
+   double custoAtual = custoInicial;
+    custoAtual *= (1.0 - descontoIdade); //desconto idade
+    custoAtual *= (1.0 - descontoPlanoAplicavel); //desconto do plano
+
+return custoAtual;
 }
 
 //toString 

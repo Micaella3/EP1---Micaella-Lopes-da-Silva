@@ -12,12 +12,12 @@ public class Medico {
     private List<Consulta> historicoConsultas;
 
     //construtor 
-    public Medico(String nome, String especialidade, String crm, double custoConsulta, List<String> agendaHorarios){
+    public Medico(String nome, String especialidade, String crm, double custoConsulta, List<String> agenda){
         this.nome = nome;
         this.especialidade = especialidade;
         this.crm = crm;
         this.custoConsulta = custoConsulta;
-        this.agendaHorarios = agendaHorarios;
+        this.agendaHorarios = new java.util.ArrayList<>(agenda);
         this.historicoConsultas = new ArrayList<>();
 }
 

@@ -42,8 +42,8 @@ public double calcularCustoConsulta(double custoInicial){
         "\n Nome: " + getNome() +
                 "\n CPF: " + getCpf() +
                 "\n Idade: " + getIdade()+
-                "\n Histórico de Consultas: " + getHistoricoConsultas()+
-                "\n Histórico de Internações: " + getHistoricoInternacoes() +
+                "\n Histórico de Consultas: " + getHistoricoConsultas().size() + " consultas registradas." +
+                "\n Histórico de Internações: " + getHistoricoInternacoes().size() + " internações registradas." +
                 "\n Método de Pagamento: " + getMetodoPagamento();
-    }
 }
+    }

@@ -72,12 +72,14 @@ public double getDescontoPlanoAplicavel(String especialidade) {
     @Override
     public String toString(){
         return "\n --- Paciente Especial ---" +
-                "\n Nome: " + getNome() +
-                "\n CPF: " + getCpf() +
-                "\n Idade: " + getIdade()+
-                "\n Histórico de Consultas: " + getHistoricoConsultas()+
-                "\n Histórico de Internações: " + getHistoricoInternacoes() +
-                "\n Informações sobre o plano de saúde: " + getPlanoSaude()+
-                "\n Grau de Prioridade: " + getGrauPrioridade();
+                "\n Nome: " + getNome() + 
+                "\n CPF: " + getCpf() + 
+                "\n Idade: " + getIdade() + 
+                "\n Histórico de Consultas: " + getHistoricoConsultas().size() + " consultas registradas." +
+                "\n Histórico de Internações: " + getHistoricoInternacoes().size() + " internações registradas." +
+                "\n Grau de Prioridade: " + getGrauPrioridade() +
+                "\n Informações sobre o plano de saúde: " + getPlanoSaude().getDescricao() + // Mostra a descrição do Plano (para evitar chamar PlanoSaude.toString() e iniciar outro loop)
+                "\n Desconto Geral do Plano: " + getPlanoSaude().getDescontoGeral();
+
     }
 }

@@ -2,11 +2,13 @@ public class PlanoSaude {
     
     private double descontoGeral;
     private String descricao; 
+    private boolean especialParaInternacao;
 
     //construtor 
-    public PlanoSaude(double  descontoGeral, String descricao){
+    public PlanoSaude(double  descontoGeral, String descricao, boolean especialParaInternacao){
         this.descontoGeral = descontoGeral;
         this.descricao = descricao;
+        this.especialParaInternacao = especialParaInternacao;
     }
 
     //getter e setter
@@ -26,10 +28,20 @@ public class PlanoSaude {
         this.descricao = descricao;
     }
 
+    public boolean isEspecialParaInternacao() {
+        return especialParaInternacao;
+    }
+
+    public void setEspecialParaInternacao(boolean especialParaInternacao) {
+        this.especialParaInternacao = especialParaInternacao;
+    }
+
+
     //método toCsv
 public String toCSV(){
     return getDescricao() +";"+
-           String.format("%.2f", getDescontoGeral());
+           String.format("%.2f", getDescontoGeral()) + ";" +
+           isEspecialParaInternacao();
 }
 
     //met. desconto por especialidade 

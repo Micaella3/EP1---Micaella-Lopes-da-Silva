@@ -47,19 +47,33 @@ public class Relatorio{
         });
     }
 
-    public void listarConsultasFuturas() { 
-        System.out.println("\n Consultas Futuras: ");
-                         consultas.stream()
-                        .filter(c -> c.getDataHora() != null && c.getDataHora().isAfter(LocalDateTime.now()))
-                        .forEach(System.out::println);
+public void listarConsultasFuturas() {
+    System.out.println("\n--- Consultas Futuras ---");
+
+    List<Consulta> futuras = consultas.stream()
+        .filter(c -> c.getDataHora() != null && c.getDataHora().isAfter(LocalDateTime.now()))
+        .collect(java.util.stream.Collectors.toList());
+
+    if (futuras.isEmpty()) {
+        System.out.println("Nenhuma consulta futura agendada.");
+    } else {
+        futuras.forEach(System.out::println);
     }
+}
+
+public void listarConsultasPassadas() {
+    System.out.println("\n--- Consultas Passadas ---");
     
-    public void listarConsultasPassadas() {
-        System.out.println("\n Consultas Passadas: ");
-                             consultas.stream()
-                             .filter(c -> c.getDataHora() != null && c.getDataHora().isBefore(LocalDateTime.now()))
-                             .forEach(System.out::println);
+    List<Consulta> passadas = consultas.stream()
+        .filter(c -> c.getDataHora() != null && c.getDataHora().isBefore(LocalDateTime.now()))
+        .collect(java.util.stream.Collectors.toList());
+
+    if (passadas.isEmpty()) {
+        System.out.println("Nenhuma consulta passada registrada.");
+    } else {
+        passadas.forEach(System.out::println);
     }
+}
     
     //met. de estatistica
     public void estatistica() {
@@ -67,7 +81,7 @@ public class Relatorio{
 
         medicos.stream()
         .max(Comparator.comparingInt(Medico::consultasRealizadas))
-        .ifPresentOrElse(m -> System.out.println("Médico(a) Mais Produtivo: " + m.getNome()),
+        .ifPresentOrElse(m -> System.out.println("\n *** Médico(a) Mais Produtivo: ***" + m.getNome()),
         () -> System.out.println("Nenhum médico encontrado."));
 
     //especialidade mais procurada
@@ -76,7 +90,7 @@ public class Relatorio{
             .collect(Collectors.groupingBy(s -> s, Collectors.counting()))
             .entrySet().stream()
             .max(Map.Entry.comparingByValue())
-            .ifPresent(e -> System.out.println("Especialidade Mais Procurada: " + e.getKey()));
+            .ifPresent(e -> System.out.println("\n*** Especialidade Mais Procurada: ***" + e.getKey()));
             
             this.calcularEconomiaPlano();
     }

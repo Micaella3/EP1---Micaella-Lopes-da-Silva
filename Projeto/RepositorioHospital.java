@@ -47,30 +47,29 @@ public class RepositorioHospital {
         salvarEntidades(sistema.getConsultas(), "consultas.csv");
         salvarEntidades(sistema.getInternacoes(), "internacoes.csv");
 
-        System.out.println("Dados Salvos!");
+        System.out.println("\n --- Dados Salvos com Sucesso! ---");
     }
 
     //usando reflection 
     private <T> void salvarEntidades(List<T> lista, String nomeArquivo){
         File file = new File(DATA_PATH + nomeArquivo);
         //file file cria um objeto file q apresenta o caminho do arquivo
-        try (PrintWriter pw = new PrintWriter(new FileWriter(file))){
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file))) {  
             //filewriter: fluxo que conecta o código ao arquivo no disco
             //printwriter: escreve texto e cria novas linhas 
             
-        for (T objeto: lista) {
-        if (objeto != null){
-                    String linhaCSV = (String) objeto.getClass()
-                                                    .getMethod("toCSV")
-                                                    .invoke(objeto);
-                    pw.println(linhaCSV);
-                }
+       for (T objeto : lista) {
+            if (objeto != null) {
+                //chamando o toCSV de cada objeto
+                String linhaCSV = (String) objeto.getClass().getMethod("toCSV").invoke(objeto);
+                pw.println(linhaCSV);
             }
-        } catch (Exception e) {
-            System.err.println("Erro ao salvar " + nomeArquivo + ": " + e.getMessage());
-            e.printStackTrace();
         }
+    } catch (Exception e) {
+        System.err.println("*Erro ao salvar " + nomeArquivo + ": " + e.getMessage());
+        e.printStackTrace();
     }
+}
 
     //método de carregamento
     public void carregarTudo(){
@@ -81,7 +80,7 @@ public class RepositorioHospital {
         carregarConsultas();
         carregarInternacoes();
 
-        System.out.println("Dados carregados!");
+        System.out.println("\n * Dados carregados *");
     }
 
     //transformando em objetos agora
@@ -111,30 +110,34 @@ public class RepositorioHospital {
                 sistema.getMedicos().add(novoMedico);
             }
         } catch(IOException | NumberFormatException e){
-            System.err.println("Erro ao carregar médicos: " + e.getMessage());
+            System.err.println("*Erro ao carregar médicos: " + e.getMessage());
         }
     }
 
-    private void carregarPlanos() {
-        File file = new File(DATA_PATH + "planos.csv");
-        if (!file.exists()) return; 
+private void carregarPlanos() {
+    File file = new File(DATA_PATH + "planos.csv");
+    if (!file.exists()) return; 
 
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String linha;
-            while ((linha = br.readLine()) != null) {
-                String[] dados = linha.split(DELIMITER);
-                if (dados.length < 2) continue; 
-                
-                String descricao = dados[0];
-                double descontoGeral = Double.parseDouble(dados[1].replace(",", ".")); 
-                
-                PlanoSaude novoPlano = new PlanoSaude(descontoGeral, descricao);
-                sistema.getPlanos().add(novoPlano); 
-            }
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Erro ao carregar planos de saúde: " + e.getMessage());
+    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+    String linha;
+        while ((linha = br.readLine()) != null) {
+            String[] dados = linha.split(DELIMITER);
+            
+        if (dados.length < 3) continue; 
+            
+            String descricao = dados[0]; 
+            double descontoGeral = Double.parseDouble(dados[1].replace(",", ".")); 
+            
+            boolean especialParaInternacao = Boolean.parseBoolean(dados[2]); 
+            
+            PlanoSaude novoPlano = new PlanoSaude(descontoGeral, descricao, especialParaInternacao);
+
+            sistema.getPlanos().add(novoPlano); 
         }
+    } catch (IOException | NumberFormatException e) {
+        System.err.println("Erro ao carregar planos de saúde: " + e.getMessage());
     }
+}
     
     private void carregarQuartos() {
         File file = new File(DATA_PATH + "quartos.csv");
@@ -153,7 +156,7 @@ public class RepositorioHospital {
                 sistema.getQuartos().add(novoQuarto);
             }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Erro ao carregar quartos: " + e.getMessage());
+            System.err.println("*Erro ao carregar quartos: " + e.getMessage());
         }
     }
 
@@ -186,13 +189,12 @@ public class RepositorioHospital {
                     
                     PlanoSaude planoAssociado = null;
                     
-                    //busca o objeto PlanoSaude na lista carregada (ligação da chave)
+                    //busca o objeto PlanoSaude na lista carregada c/ ligação da chave
                     if (!planoDescricaoChave.equals("NULO")) {
                         planoAssociado = sistema.getPlanos().stream()
                             .filter(p -> p.getDescricao().equals(planoDescricaoChave))
                             .findFirst()
                             .orElse(null);
-                             // Retorna null se não encontrar
                     }
                     novoPaciente = new PacienteEspecial(planoAssociado, nome, cpf, idade, grauPrioridade);
                 }
@@ -201,7 +203,7 @@ public class RepositorioHospital {
                     sistema.getPacientes().add(novoPaciente);
                 }
         } catch (IOException | NumberFormatException e) {
-            System.err.println("Erro ao carregar pacientes: " + e.getMessage());
+            System.err.println("*Erro ao carregar pacientes: " + e.getMessage());
         }
     }
 
@@ -229,7 +231,7 @@ public class RepositorioHospital {
             sistema.getConsultas().add(novConsulta);
                 }
             } catch (IOException | NumberFormatException e) {
-        System.err.println("Erro ao carregar consultas: " + e.getMessage());
+        System.err.println("*Erro ao carregar consultas: " + e.getMessage());
             }
         }
 
@@ -268,7 +270,7 @@ public class RepositorioHospital {
             sistema.getInternacoes().add(novaInternacao);
         }
     } catch (IOException | NumberFormatException e) {
-        System.err.println("Erro ao carregar internações: " + e.getMessage());
+        System.err.println("*Erro ao carregar internações: " + e.getMessage());
         }
     }
 
