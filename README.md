@@ -43,6 +43,9 @@ Desenvolvimento de um sistema de gerenciamento hospitalar utilizando os conceito
 - https://youtu.be/qU-WPKrSeUM
 
 ---
+## Diagrama 
+<img width="1138" height="769" alt="image" src="https://github.com/user-attachments/assets/c6789789-1795-4d88-8fd4-53b714c60859" />
+
 
 ## Prints da Execução
 
@@ -66,7 +69,7 @@ Desenvolvimento de um sistema de gerenciamento hospitalar utilizando os conceito
 
 ## Observações (Extras ou Dificuldades)
 
-- [A exportação de relatórios em formato .csv foi uma novidade então de ínicio meio dificultoso, mas essa dificuldade foi bem menor do que implementar todos os métodos necessários.]
+- [A exportação de relatórios em formato .csv foi uma novidade então de ínicio meio dificultoso, mas essa dificuldade foi bem menor do que implementar todos os métodos necessários. Métodos foi definitivamemte a parte que mais me pegou, mas, com esse projeto, o conhecimento valeu todo o trabalho]
 
 ---
 
