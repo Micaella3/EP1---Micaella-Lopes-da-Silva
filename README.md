@@ -55,7 +55,7 @@ Desenvolvimento de um sistema de gerenciamento hospitalar utilizando os conceito
 3. Menu de Agendamentos e Transações:  
    <img width="566" height="371" alt="image" src="https://github.com/user-attachments/assets/6c4814a9-a131-4cb7-8c0b-d06fed9ba3a0" />
 
-4. Menu de Relatorios e Estatísticas
+4. Menu de Relatorios e Estatísticas:
    <img width="479" height="424" alt="image" src="https://github.com/user-attachments/assets/5f425509-c5c7-4222-9148-7db5742ebd79" />
 
 
