@@ -10,45 +10,55 @@ Desenvolvimento de um sistema de gerenciamento hospitalar utilizando os conceito
 
 ## Dados do Aluno
 
-- **Nome completo:** [Preencher aqui]
-- **Matrícula:** [Preencher aqui]
-- **Curso:** [Preencher aqui]
-- **Turma:** [Preencher aqui]
+- **Nome completo:** [Micaella Lopes da Silva]
+- **Matrícula:** [251026266]
+- **Curso:** [Engenharias]
+- **Turma:** [06]
 
 ---
 
 ## Instruções para Compilação e Execução
 
 1. **Compilação:**  
-   [Descrever aqui como compilar o projeto. Exemplo: `javac Main.java` ou o script usado]
+   [Compilado em `javac Main.java`]
 
 2. **Execução:**  
-   [Descrever aqui como executar o projeto. Exemplo: `java Main` ou o script usado]
+   [Executar o projeto em `java Main`]
 
 3. **Estrutura de Pastas:**  
-   [Descrever aqui as principais pastas do projeto]
+   [.
+├── src/
+│   └── Main.java
+├── bin/ (ou classes/)
+│   └── Main.class
+└── lib/ ]
 
 3. **Versão do JAVA utilizada:**  
-   [Descrever aqui como versão do JAVA utilizada no projeto. Sugestão: `java 21`]
+   [`java 21`]
 
 ---
 
 ## Vídeo de Demonstração
 
-- [Inserir o link para o vídeo no YouTube/Drive aqui]
+- https://youtu.be/qU-WPKrSeUM
 
 ---
 
 ## Prints da Execução
 
 1. Menu Principal:  
-   ![Inserir Print 1](caminho/do/print1.png)
+   <img width="462" height="536" alt="image" src="https://github.com/user-attachments/assets/e7168501-7847-4f9e-8b58-b4ff9386ec91" />
 
-2. Cadastro de Médico:  
-   ![Inserir Print 2](caminho/do/print2.png)
+2. Menu de Cadastros:  
+   <img width="475" height="369" alt="image" src="https://github.com/user-attachments/assets/d9a9fc78-dbd7-4b9c-8142-31e795fabeb5" />
 
-3. Relatório de ?:  
-   ![Inserir Print 3](caminho/do/print3.png)
+3. Menu de Agendamentos e Transações:  
+   <img width="566" height="371" alt="image" src="https://github.com/user-attachments/assets/6c4814a9-a131-4cb7-8c0b-d06fed9ba3a0" />
+
+4. Menu de Relatorios e Estatísticas
+   <img width="479" height="424" alt="image" src="https://github.com/user-attachments/assets/5f425509-c5c7-4222-9148-7db5742ebd79" />
+
+
 
 ---
 
@@ -56,13 +66,13 @@ Desenvolvimento de um sistema de gerenciamento hospitalar utilizando os conceito
 
 ## Observações (Extras ou Dificuldades)
 
-- [Espaço para o aluno comentar qualquer funcionalidade extra que implementou, dificuldades enfrentadas, ou considerações importantes.]
+- [A exportação de relatórios em formato .csv foi uma novidade então de ínicio meio dificultoso, mas essa dificuldade foi bem menor do que implementar todos os métodos necessários.]
 
 ---
 
 ## Contato
 
-- [Opcional: E-mail pessoal do aluno.]
+- [micaellalps03@gmail.com]
 
 ---
 
